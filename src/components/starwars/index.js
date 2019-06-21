@@ -24,12 +24,13 @@ export default class Starwars extends React.Component{
   }  
   componentDidMount() {
  //   console.log('Our component Starwars did mount')
-    let apiUrl='https://swapi.co/api/people/?results=10'
+    let apiUrl='https://swapi.co/api/people/?page=2'
+  //  let apiUrl='https://swapi.co/api/starships'
     fetch(apiUrl)
      .then(response => response.json())
 //     .then(json => console.log(json.results[1]) )
      .then(data => {
-       console.log(data)
+       console.log('mydata',data)
        this.setState({
          //characters: data.results[3],
          characters:data.results,
@@ -60,16 +61,29 @@ export default class Starwars extends React.Component{
        )
       }
     
-   
+      let CharacterHeight =() =>{
+        return(
+          this.state.characters.map((character, index) => {
+            return (
+            <li key={index}> { character.height} </li>
+            )
+          })
+        )
+      }
     //console.log(Charaterlist)
     return(
       <div>
         <h2>{this.state.characters.name}</h2>      
         <h1>starwars</h1>
-        <h2>     {/*this.state.characters.length */ }</h2>
+        <h2> this.state.character.lenght is:      {this.state.characters.length  }</h2>
         <ul>list   
    
         {Charaterlist()}
+        </ul>
+
+        <h2>heights</h2>
+        <ul>
+        {  CharacterHeight()   }
         </ul>
 
 {/*          <div style={divStyl}>{Charaterlist} </div>
