@@ -7,7 +7,7 @@ export default class Starwars extends React.Component{
     this.state = {
     // isLoading: true, 
      characters: [
-        { name: 'Amare',
+        /* { name: 'Amare',
           hair_color: 'green'
         },
         { name: 'Coco',
@@ -18,50 +18,73 @@ export default class Starwars extends React.Component{
         },
         { name: 'Miss Stinker',
         hair_color: 'blond'
-        },
+        }, */
      ]
     }
   }  
-  // componentDidMount() {
-    //console.log('Our component Starwars did mount')
-    // let apiUrl='https://swapi.co/api/people/?results=10'
-    // fetch(apiUrl)
-      // .then(response => response.json())
-    /* .then((resp)=>{
-      //console.log(resp.json())
-     return resp.json()
-    }) */
-    // .then(json => console.log(json.results[0]))
-    // .then(data => {
-      // console.log(data)
-      //console.log(json.results[3].name)
-      //console.log(json.results[2].name + "************")
-    // })
-    // .catch((err) =>{
-      // console.log(err)
-    // }) 
-// }
+  componentDidMount() {
+ //   console.log('Our component Starwars did mount')
+    let apiUrl='https://swapi.co/api/people/?results=10'
+    fetch(apiUrl)
+     .then(response => response.json())
+//     .then(json => console.log(json.results[1]) )
+     .then(data => {
+       console.log(data)
+       this.setState({
+         //characters: data.results[3],
+         characters:data.results,
+         } //, () => console.log(this.state.characters)
+         )
+        })
+    // .then(console.log(this.state.characters ))  
+    .catch((err) =>{
+     console.log(err)
+      }) 
+ }
 
   render(){
-    let Charaterlist = this.state.characters.map((character,index) =>{
+  /*   let Charaterlist = this.state.characters.map((character,index) =>{
       return (
         <Character
           key={'character-  ' +index}
           firstname ={character.name}
           hairColor= {character.hair_color}
-        />
+         />
       )  
+    })  */
 
-    }) 
-
-    console.log(Charaterlist)
+    let Charaterlist= () => { 
+      return (this.state.characters.map((item) => {
+       return <li key={item.name}>{item.name} </li>
+        })
+       )
+      }
+    
+   
+    //console.log(Charaterlist)
     return(
       <div>
-      
+        <h2>{this.state.characters.name}</h2>      
         <h1>starwars</h1>
-        <h3>list</h3>
-        <Character />
-        <div>{Charaterlist} </div>
+        <h2>     {/*this.state.characters.length */ }</h2>
+        <ul>list   
+   
+        {Charaterlist()}
+        </ul>
+
+{/*          <div style={divStyl}>{Charaterlist} </div>
+       <Character 
+          firstname='shelley'
+          hairColor='chestnut'
+    /> 
+   const divStyl= {
+      backgroundColor:"lightPink",
+      textAlign: "center"
+    }
+  
+  */}
+       
+        
       </div>  
     )  
   }
