@@ -3,6 +3,7 @@ import React from 'react'
 import Users from '../users/'
 import Players from '../players/'
 import Starwars from '../starwars'
+import Pokies from '../pokies'
 import './main.css'
 
 
@@ -52,6 +53,7 @@ export default class Main extends React.Component {
             name={"coco"}
           />  */  }
           <Starwars    />
+          <Pokies />
         </main>
         )
     }

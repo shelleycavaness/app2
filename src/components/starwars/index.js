@@ -30,7 +30,7 @@ export default class Starwars extends React.Component{
      .then(response => response.json())
 //     .then(json => console.log(json.results[1]) )
      .then(data => {
-       console.log('mydata',data)
+//       console.log('mydata',data)
        this.setState({
          //characters: data.results[3],
          characters:data.results,
